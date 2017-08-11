@@ -4,8 +4,8 @@ import string
 from configparser import ConfigParser
 
 IN_SNILS = ['СНИЛС', 'СтраховойНомер', 'Страховой_номер', 'Страховой Номер', 'Номер СНИЛС']
-IN_SERIA = ['Серия','серия']
-IN_NUMBER = ['Номер','номер']
+IN_SERIA = ['Серия','серия','Серия_документа']
+IN_NUMBER = ['Номер','номер','Номер_документа']
 
 def lenl(a):
     try:
