@@ -12,6 +12,8 @@ dbconfig = read_config(section='mysql')
 dbconn = MySQLConnection(**dbconfig)  # Открываем БД из конфиг-файла
 
 
+print(sys.argv[1])
+
 workbooks =  []
 sheets = []
 for i, xlsx_file in enumerate(sys.argv):                              # Загружаем все xlsx файлы
@@ -71,7 +73,8 @@ if len(sys.argv) > 2:
     append = '+'
 else:
     append = ''
-wb.save(sys.argv[1][0:sys.argv[1].rfind('xlsx')] + append + '_pasp' '.xlsx')
+
+wb.save(sys.argv[1][0:sys.argv[1].rfind('.xlsx')] + append + '_pasp' '.xlsx')
 
 if all_good:
     print('\n' + datetime.datetime.now().strftime("%H:%M:%S") + ' Все паспорта хорошие')
