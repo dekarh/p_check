@@ -6,13 +6,18 @@ import datetime
 import openpyxl
 from openpyxl import Workbook
 from mysql.connector import MySQLConnection
-from lib import l, read_config, IN_SNILS, IN_NUMBER, IN_SERIA
+from lib import l, read_config
+
+IN_SNILS = ['СНИЛС', 'СтраховойНомер', 'Страховой_номер', 'Страховой Номер', 'Номер СНИЛС']
+IN_SERIA = ['Серия','серия','Серия_документа','Паспорт_серия']
+IN_NUMBER = ['Номер','номер','Номер_документа','Паспорт_номер']
+
 
 dbconfig = read_config(section='mysql')
 dbconn = MySQLConnection(**dbconfig)  # Открываем БД из конфиг-файла
 
 
-print(sys.argv[1])
+# print(sys.argv[1])
 
 workbooks =  []
 sheets = []
@@ -37,7 +42,7 @@ for i, sheet in enumerate(sheets):                                    # Марк
                 keys[IN_SERIA[0]] = k
             if cell.value in IN_NUMBER:
                 keys[IN_NUMBER[0]] = k
-        if len(keys) < 2:
+        if len(keys) < 3:
             print('В файле "' + sys.argv[i+1] + '" отсутствует колонка со СНИЛС, номером или серией паспорта')
             time.sleep(3)
             sys.exit()
